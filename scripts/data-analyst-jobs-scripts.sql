@@ -51,10 +51,54 @@
 -- WHERE location = 'CA'
 -- --Answer: 230
 
---9.	Find the name of each company and its average star rating for all companies that have more than 5000 reviews across all locations. How many companies are there with more that 5000 reviews across all locations?
-SELECT company, SUM(review_count), AVG(star_rating)
-FROM data_analyst_jobs
-GROUP BY company;
+-- --9.	Find the name of each company and its average star rating for all companies that have more than 5000 reviews across all locations. How many companies are there with more that 5000 reviews across all locations?
+-- SELECT company, SUM(review_count) AS review_total, AVG(star_rating) AS star_avg
+-- FROM data_analyst_jobs
+-- WHERE company IS NOT NULL
+-- GROUP BY company
+-- HAVING SUM(review_count) > 5000
+-- ORDER BY review_total DESC;
+-- -- Answer: 70 companies
+
+-- --10.	Add the code to order the query in #9 from highest to lowest average star rating. Which company with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating?
+-- SELECT company, SUM(review_count) AS review_total, AVG(star_rating) AS star_avg
+-- FROM data_analyst_jobs
+-- WHERE company IS NOT NULL
+-- GROUP BY company
+-- HAVING SUM(review_count) > 5000
+-- ORDER BY star_avg DESC;
+-- -- Answer: Google has the highest avg star rating at 4.300000191
+
+-- --11.	Find all the job titles that contain the word ‘Analyst’. How many different job titles are there? 
+-- SELECT DISTINCT title
+-- FROM data_analyst_jobs
+-- WHERE title ILIKE '%Analyst%';
+-- -- Answer: 774 unique job titles containing 'Analyst'
+
+-- --12.	How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
+-- SELECT title
+-- FROM data_analyst_jobs
+-- WHERE title NOT ILIKE '%analyst%'
+-- 	AND title NOT ILIKE '%analytics%';
+-- -- Answer: 4 job titles do not include 'Analyst' or 'Analytics.' All four include Tableau in their job title.
+
+-- --**BONUS:**
+-- -- You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks. 
+-- --  - Disregard any postings where the domain is NULL. 
+-- --  - Order your results so that the domain with the greatest number of `hard to fill` jobs is at the top. 
+-- --   - Which three industries are in the top 3 on this list? How many jobs have been listed for more than 3 weeks for each of the top 3?
+-- SELECT COUNT(title) AS number_of_listings, domain
+-- FROM data_analyst_jobs
+-- WHERE domain IS NOT NULL
+-- 	AND skill ILIKE '%SQL%'
+-- 	AND days_since_posting > 21
+-- GROUP BY domain
+-- ORDER BY number_of_listings DESC
+-- LIMIT 3;
+-- -- Answer: Internet and Software has 62, Banks and Financial Services has 61, and Consulting and Business Services has 57.
+
+
+	
 
 
 
