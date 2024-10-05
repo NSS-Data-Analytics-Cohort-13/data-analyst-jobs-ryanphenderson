@@ -18,14 +18,15 @@
 -- --3b. How many are there in either Tennessee or Kentucky?
 -- SELECT COUNT(location)
 -- FROM data_analyst_jobs
--- WHERE location in ('TN','KY');
+-- WHERE location IN ('TN','KY');
 -- --Answer: 27
 
 -- --4.	How many postings in Tennessee have a star rating above 4?
 -- SELECT COUNT(star_rating)
 -- FROM data_analyst_jobs
 -- WHERE star_rating > 4.0
--- --Answer: 416
+-- 	AND location = 'TN';
+-- --Answer: 3
 
 -- --5.	How many postings in the dataset have a review count between 500 and 1000?
 -- SELECT COUNT(review_count)
